@@ -9,9 +9,14 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * This is the main class for the Media Catalog application. It extends JavaFX's
+ * Application class and implements the {@link IMVPContract.View} interface. This class is responsible for
+ * creating the main GUI window, handling user interactions, and coordinating with the presenter
+ * to update the media catalog and display it to the user.
+ */
 public class HelloApplication extends Application implements IMVPContract.View{
 
     IMVPContract.Presenter presenter;
@@ -23,8 +28,15 @@ public class HelloApplication extends Application implements IMVPContract.View{
     TableColumn<MediaItem, String> directorColumn;
     Button addButton;
 
+    /**
+     * The start method is the entry point for the JavaFX application.
+     * It sets up the main window (stage), creates the table view, and
+     * initializes the buttons and combo boxes for interacting with the user.
+     *
+     * @param stage The primary stage for this application.
+     */
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) {
         presenter = new CatalogPresenter(this);
 
         tableView = new TableView<>();
@@ -81,16 +93,32 @@ public class HelloApplication extends Application implements IMVPContract.View{
         stage.show();
     }
 
+    /**
+     * The main method that launches the JavaFX application.
+     *
+     * @param args Command line arguments.
+     */
     public static void main(String[] args) {
         launch();
     }
 
+    /**
+     * This method is called by the presenter to update the displayed list of media items
+     * after sorting or adding new items to the catalog.
+     *
+     * @param list The list of media items to be displayed in the TableView.
+     */
     @Override
     public void updateList(ArrayList<MediaItem> list) {
         ObservableList<MediaItem> observableList = FXCollections.observableArrayList(list);
         tableView.setItems(observableList);
     }
 
+    /**
+     * Opens a new window where the user can input details for a new media item
+     * (either a Book or Movie). This window includes fields for title, year, rating,
+     * and additional fields depending on the media type (publisher for books, director for movies).
+     */
     private void openInputWindow() {
         Stage inputStage = new Stage();
         inputStage.initModality(Modality.APPLICATION_MODAL);
@@ -129,7 +157,7 @@ public class HelloApplication extends Application implements IMVPContract.View{
             if ("Book".equals(type)) {
                 Book book = new Book(title, year, rating, fourthInput);
                 presenter.addItem(book);
-            } else {
+            } else if("Movie".equals(type)){
                 Movie movie = new Movie(title, year, rating, fourthInput);
                 presenter.addItem(movie);
             }
