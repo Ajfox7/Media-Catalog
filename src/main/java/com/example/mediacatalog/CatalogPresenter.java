@@ -28,9 +28,4 @@ public class CatalogPresenter implements IMVPContract.Presenter{
         }
         view.updateList(sorter.sort(catalog.items));
     }
-
-    @Override
-    public ArrayList<MediaItem> getItems(){
-        return catalog.items;
-    }
 }
