@@ -1,14 +1,15 @@
 package com.example.mediacatalog;
 
-public class Book extends MediaItem{
-    protected String publisher;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
-    public Book(String title, Integer releaseYear, Double rating, String publisher){
-        super(title,releaseYear,rating);
-        this.publisher = publisher;
+public class Book extends MediaItem {
+    private final SimpleStringProperty publisher;
+
+    public Book(String title, int year, double rating, String publisher) {
+        super(title, year, rating);
+        this.publisher = new SimpleStringProperty(publisher);
     }
 
-    public String getPublisher() {
-        return publisher;
-    }
+    public StringProperty getPublisher() { return publisher; }
 }

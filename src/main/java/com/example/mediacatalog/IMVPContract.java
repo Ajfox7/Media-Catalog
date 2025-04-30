@@ -6,6 +6,7 @@ public interface IMVPContract {
     interface Presenter{
         void addItem(MediaItem item);
         void sortList(String sortType);
+        ArrayList<MediaItem> getItems();
     }
     interface View{
         void updateList(ArrayList<MediaItem> list);

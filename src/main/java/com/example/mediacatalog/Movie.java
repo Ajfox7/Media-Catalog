@@ -1,14 +1,17 @@
 package com.example.mediacatalog;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 public class Movie extends MediaItem{
-    protected String director;
+    protected final SimpleStringProperty director;
 
     public Movie(String title, Integer releaseYear, Double rating, String director) {
         super(title, releaseYear, rating);
-        this.director = director;
+        this.director = new SimpleStringProperty(director);
     }
 
-    public String getDirector() {
+    public StringProperty getDirector() {
         return director;
     }
 }

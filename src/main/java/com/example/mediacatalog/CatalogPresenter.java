@@ -1,5 +1,7 @@
 package com.example.mediacatalog;
 
+import java.util.ArrayList;
+
 public class CatalogPresenter implements IMVPContract.Presenter{
 
     MediaCatalog catalog;
@@ -25,5 +27,10 @@ public class CatalogPresenter implements IMVPContract.Presenter{
             sorter = new YearSorter();
         }
         view.updateList(sorter.sort(catalog.items));
+    }
+
+    @Override
+    public ArrayList<MediaItem> getItems(){
+        return catalog.items;
     }
 }

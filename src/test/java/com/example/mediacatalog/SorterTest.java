@@ -20,7 +20,7 @@ class SorterTest {
 
         for(MediaItem m:list){
             System.out.println(m.getTitle());
-            System.out.println(m.getReleaseYear());
+            System.out.println(m.getYear());
         }
         ArrayList<MediaItem> list2 = sorter.sort(list);
         for(MediaItem m:list2){
@@ -28,7 +28,7 @@ class SorterTest {
         }
         ArrayList<MediaItem> list3 = sorter2.sort(list);
         for(MediaItem m:list3){
-            System.out.println(m.getReleaseYear());
+            System.out.println(m.getYear());
         }
     }
 }
